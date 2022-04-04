@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/case-center-admin",
         "index": "apps/case-center-admin/src/index.html",
@@ -18,7 +20,10 @@
           "apps/case-center-admin/src/favicon.ico",
           "apps/case-center-admin/src/assets"
         ],
-        "styles": ["apps/case-center-admin/src/styles.scss"],
+        "styles": [
+          "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+          "apps/case-center-admin/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -86,10 +91,22 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/case-center-admin"],
+      "outputs": [
+        "coverage/apps/case-center-admin"
+      ],
       "options": {
         "jestConfig": "apps/case-center-admin/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx build case-center-admin",
+          "docker build -f ./apps/case-center-admin/Dockerfile . -t cc-admin"
+        ],
+        "parallel": false
       }
     }
   },
