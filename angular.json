@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "case-center-admin": "apps/case-center-admin",
+    "case-center-admin-e2e": "apps/case-center-admin-e2e"
+  }
+}
